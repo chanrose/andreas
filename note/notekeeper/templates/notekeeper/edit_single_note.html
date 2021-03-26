@@ -1,0 +1,33 @@
+{% extends "notekeeper/base.html" %}
+{% block body %}
+
+
+<div class="mx-5">
+ <div class="card my-3 mx-3" >
+  <form action="{% url 'notekeeper:update_note' note.id %}" method="POST">
+  {% csrf_token %}
+      <div class="card-header">
+          <h1 class="display-4"> Edit: 
+            <input type="text" name="title" value="{{ note.title }}" placeholder="{{ note.title }}"> </h1>
+      </div>
+      <div class="card-body">
+        <textarea class="form-control"  rows="3"  name="content" value=" "> {{ note.content }}</textarea>
+        <br />   
+        <a class="btn btn-primary" href="{% url 'notekeeper:single_note' note.id %}">Cancel</a>
+        <button type="submit" class="btn btn-primary"> Apply </button>
+
+      </div>
+    </form>
+    </div>
+
+
+      
+</div>
+
+    <div class="text-center">
+    <a class="btn btn-primary" href="{% url 'notekeeper:index' %}">Go Back</a>
+    </div>
+
+</div>
+
+{% endblock %}
